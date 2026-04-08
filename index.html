@@ -190,7 +190,12 @@ window.addEventListener('message', function(e) {
     MEMBER_ID = e.data.memberId || e.data.member_id;
     refreshAll();
   }
-  if (e.data && e.data.cpd_action === 'content_calendar_updated') {
+  // Dashboard forwards attack tool campaign_saved → reload attack plans
+  if (e.data.cpd_action === 'refresh_campaigns') {
+    loadCampaigns().then(renderCalendar);
+  }
+  // Dashboard forwards content_calendar_updated → reload content posts
+  if (e.data.cpd_action === 'refresh_content' || e.data.cpd_action === 'content_calendar_updated') {
     loadContentPosts();
   }
 });
@@ -219,12 +224,18 @@ async function loadCampaigns(){
     rows.forEach(function(c){
       var dateStr=(c.created_at||'').split('T')[0];
       if(!dateStr) return;
-      // Try to pull campaign window dates from report_json if available
+      // Use campaign_date column if set (new field from enhanced attack tool)
+      // Fall back to window_start in report_json, then created_at
       var planDate = dateStr;
-      try {
-        var plan = typeof c.report_json==='string'?JSON.parse(c.report_json):c.report_json;
-        if(plan && plan.window_start) planDate = plan.window_start.split('T')[0];
-      }catch(e){}
+      if (c.campaign_date) {
+        planDate = c.campaign_date.split('T')[0];
+      } else {
+        try {
+          var plan = typeof c.report_json==='string'?JSON.parse(c.report_json):c.report_json;
+          if(plan && plan.campaign_date) planDate = plan.campaign_date.split('T')[0];
+          else if(plan && plan.window_start) planDate = plan.window_start.split('T')[0];
+        }catch(e){}
+      }
       EVENTS.push({
         type:'attack', date:planDate, originalDate:dateStr,
         title: c.target + (c.city?' — '+c.city:''),
