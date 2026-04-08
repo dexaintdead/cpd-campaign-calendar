@@ -21,6 +21,8 @@
   --fd:'Bebas Neue',sans-serif;--fb:'Syne',sans-serif;--fm:'JetBrains Mono',monospace;
 }
 html,body{background:var(--bg);color:var(--tx);font-family:var(--fb);font-size:14px;min-height:100vh;overflow-x:hidden}
+*{scrollbar-width:none!important;-ms-overflow-style:none!important}
+*::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}
 @keyframes up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
