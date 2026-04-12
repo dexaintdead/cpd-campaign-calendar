@@ -100,9 +100,120 @@ html,body{background:var(--bg);color:var(--tx);font-family:var(--fb);font-size:1
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--green-b);border-radius:9px;padding:10px 20px;font-family:var(--fm);font-size:12px;color:var(--green);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.show{opacity:1}
 .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;display:inline-block;margin-right:4px}
+
+/* MOBILE OVERRIDE */
+@media(max-width:600px){
+  body > *:not(#mob-shell):not(style):not(script){display:none!important}
+  #mob-shell{display:flex!important}
+}
+#mob-shell{display:none;flex-direction:column;min-height:100vh;background:#060608;color:#ECE8E2;font-family:'Syne',sans-serif;font-size:14px}
+.ms-top{display:flex;align-items:center;gap:10px;padding:13px 16px;background:#0C0C10;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;z-index:50;flex-shrink:0}
+.ms-logo{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.08em}.ms-logo span{color:#D63030}
+.ms-back{display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;color:#5A5664;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:5px 10px;border-radius:4px;cursor:pointer;text-decoration:none;transition:color .15s;margin-left:auto;white-space:nowrap}
+.ms-back:active{color:#ECE8E2}
+.ms-body{flex:1;overflow-y:auto;padding:14px 14px 40px;-webkit-overflow-scrolling:touch}
+.ms-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.ms-stat{background:#0C0C10;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:13px 14px;position:relative;overflow:hidden}
+.ms-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--sa,rgba(255,255,255,.1))}
+.ms-stat-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.13em;color:#5A5664;text-transform:uppercase;margin-bottom:5px}
+.ms-stat-val{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em;line-height:1}
+.ms-stat-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:#5A5664;margin-top:3px}
+.ms-card{background:#0C0C10;border:1px solid rgba(255,255,255,.06);border-radius:10px;overflow:hidden;margin-bottom:12px}
+.ms-card-hd{display:flex;align-items:center;gap:9px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer}
+.ms-card-title{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.08em;flex:1}
+.ms-card-chev{color:#5A5664;font-size:12px;transition:transform .22s;flex-shrink:0}
+.ms-card.open .ms-card-chev{transform:rotate(0deg)}.ms-card:not(.open) .ms-card-chev{transform:rotate(-90deg)}
+.ms-card-body{display:none;padding:14px}.ms-card.open .ms-card-body{display:block}
+.ms-spin{display:flex;align-items:center;justify-content:center;padding:28px;gap:8px}
+.ms-spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.1);border-top-color:#D63030;border-radius:50%;animation:msSpin .7s linear infinite}
+@keyframes msSpin{to{transform:rotate(360deg)}}
+.ms-spin-txt{font-family:'JetBrains Mono',monospace;font-size:9px;color:#5A5664;letter-spacing:.1em}
+.ms-empty{padding:28px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:#5A5664;line-height:1.8}
+.ms-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ms-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:14px;padding-bottom:2px}.ms-tabs::-webkit-scrollbar{display:none}
+.ms-tab{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.09em;padding:6px 12px;border-radius:4px;border:1px solid rgba(255,255,255,.08);background:none;color:#5A5664;cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0}
+.ms-tab.on{background:rgba(214,48,48,.1);color:#D63030;border-color:rgba(214,48,48,.3)}
+.ms-row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.04)}.ms-row:last-child{border-bottom:none}
+.ms-row-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.ms-row-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.ms-row-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:#5A5664}
+.ms-row-right{margin-left:auto;text-align:right;flex-shrink:0}
+.ms-badge{display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.09em;padding:3px 8px;border-radius:3px}
+.ms-input{background:#111116;border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:11px 13px;color:#ECE8E2;font-size:13px;font-family:'Syne',sans-serif;outline:none;width:100%;margin-bottom:10px;transition:border-color .15s}
+.ms-input:focus{border-color:rgba(214,48,48,.4)}
+.ms-input::placeholder{color:#5A5664}
+.ms-btn{width:100%;padding:14px;border-radius:8px;border:none;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.1em;transition:all .15s;margin-bottom:8px}
+.ms-btn-red{background:#D63030;color:#fff}.ms-btn-red:active{background:#b82626}
+.ms-btn-green{background:#2DBD78;color:#000}.ms-btn-green:active{background:#22a066}
+.ms-btn-ghost{background:rgba(255,255,255,.04);color:#8C8898;border:1px solid rgba(255,255,255,.08)}.ms-btn-ghost:active{background:rgba(255,255,255,.08)}
+.ms-result{background:#0C0C10;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#C0BBCC;line-height:1.85;white-space:pre-wrap;max-height:320px;overflow-y:auto;margin-bottom:10px}
+.ms-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2DBD78;color:#000;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;padding:10px 20px;border-radius:6px;z-index:9999;white-space:nowrap;font-weight:700}
+
 </style>
 </head>
 <body>
+<div id="mob-shell">
+  <div class="ms-top">
+    <div class="ms-logo">CPD <span>BLACKBOOK</span></div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.08em;color:#3B82C4">CAMPAIGN CALENDAR</div>
+    <button class="ms-back" onclick="try{window.parent.postMessage({cpd_navigate:'overview'},'*');}catch(e){window.location.href='https://www.cpdblackbook.com/my-dashboard';}">&#8592; INTEL HUB</button>
+  </div>
+  <div class="ms-body">
+    <div style="margin-bottom:16px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;color:#3B82C4;margin-bottom:4px">CAMPAIGN CALENDAR</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.06em;line-height:1">UPCOMING DROPS</div>
+      <div style="font-family:JetBrains Mono,monospace;font-size:10px;color:#5A5664;margin-top:4px">Events, releases & campaign dates</div>
+    </div><div class="ms-card open" id="cal-events-card">
+      <div class="ms-card-hd" onclick="msTog('cal-events-card')">
+        <div class="ms-dot" style="background:#3B82C4"></div>
+        <div class="ms-card-title">UPCOMING EVENTS</div>
+        <div class="ms-card-chev">▾</div>
+      </div>
+      <div class="ms-card-body" style="padding:0">
+        <div id="cal-list"><div class="ms-spin"><div class="ms-spinner"></div><div class="ms-spin-txt">LOADING...</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function msTog(id){var el=document.getElementById(id);if(el)el.classList.toggle('open');}
+function msToast(msg,col){var t=document.createElement('div');t.className='ms-toast';t.textContent=msg;if(col)t.style.background=col;document.body.appendChild(t);setTimeout(function(){t.remove();},2200);}
+function msEsc(s){return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''}
+(function(){
+  if(window.innerWidth>600)return;
+  var SU='https://prhoinuqnrwbqezemwux.supabase.co',SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByaG9pbnVxbnJ3YnFlemVtd3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4ODgyNDAsImV4cCI6MjA4OTQ2NDI0MH0.PxLnp_iQkGXffF3mHPUhCUnCzjBFjFz_RszCg_lV7S0',MID='';
+  function sbH(){return{'apikey':SK,'Authorization':'Bearer '+SK};}
+  function esc(s){return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''}
+  try{var p=new URLSearchParams(window.location.search);MID=p.get('member_id')||p.get('memberId')||'';}catch(e){}
+  window.addEventListener('message',function(e){if(e.data&&(e.data.memberId||e.data.member_id)){MID=e.data.memberId||e.data.member_id;}});
+  var typeColors={concert:'#D63030',release:'#C9A84C',brand:'#3B82C4',event:'#2DBD78',campaign:'#9B5DE5',other:'#8C8898'};
+  async function calLoad(){
+    try{
+      var today=new Date().toISOString().split('T')[0];
+      var r=await fetch(SU+'/rest/v1/campaign_events?date=gte.'+today+'&order=date.asc&limit=50',{headers:sbH()});
+      var rows=await r.json();
+      if(!Array.isArray(rows)||rows.length===0){document.getElementById('cal-list').innerHTML='<div class="ms-empty">No upcoming events found.</div>';return;}
+      document.getElementById('cal-list').innerHTML=rows.map(function(e){
+        var type=(e.type||e.category||'other').toLowerCase();
+        var col=typeColors[type]||typeColors.other;
+        var date=e.date?new Date(e.date+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'TBD';
+        return '<div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.04)">'+
+          '<div style="min-width:42px;text-align:center;background:rgba(255,255,255,.04);border-radius:7px;padding:8px 6px;flex-shrink:0">'+
+            '<div style="font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:.04em;color:'+col+';line-height:1">'+date.split(' ')[1].replace(',','')+'</div>'+
+            '<div style="font-family:JetBrains Mono,monospace;font-size:8px;color:#5A5664">'+date.split(' ')[0].toUpperCase()+'</div>'+
+          '</div>'+
+          '<div style="flex:1;min-width:0">'+
+            '<div style="font-size:13px;font-weight:700;margin-bottom:3px">'+esc(e.title||e.name||'Event')+'</div>'+
+            '<div style="font-family:JetBrains Mono,monospace;font-size:9px;color:#8C8898;margin-bottom:4px">'+(e.location||e.city||'')+'</div>'+
+            '<span style="font-family:JetBrains Mono,monospace;font-size:8px;padding:2px 7px;border-radius:3px;background:rgba(255,255,255,.04);color:'+col+'">'+type.toUpperCase()+'</span>'+
+          '</div>'+
+        '</div>';
+      }).join('');
+    }catch(e){document.getElementById('cal-list').innerHTML='<div class="ms-empty">Could not load calendar.</div>';}
+  }
+  calLoad();
+})();
+</script>
 
 <div class="hd">
   <div>
